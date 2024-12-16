@@ -1,0 +1,164 @@
+:root{
+    --asideBoxWidth: 200px;
+}
+
+@keyframes ghostAnimation {
+    0% {
+        opacity: 0.2;
+    } 50% {
+        opacity: 0.5;
+    } 100% {
+        opacity: 0.2;
+    }
+}
+
+
+/* ASIDE */
+
+.aside{
+    width: var(--asideBoxWidth);
+    min-height: calc(100dvh - 100px);
+    border-right: 1px solid rgb(214, 214, 214);
+}
+
+.asideBox{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    border-bottom: 1px solid rgb(214, 214, 214);
+    list-style: none;
+}
+
+.asideBox:hover{
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+    
+}
+
+.aside details{
+    width: 100%;
+}
+
+.aside details a{
+
+    margin-top: 10px;
+
+    border: 1px solid rgb(214, 214, 214);
+
+    width: 100%;
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+.aside details > summary {
+    list-style: none;
+}
+
+.aside details > summary::-webkit-details-marker {
+    display: none;
+}
+
+/* MAIN CONTENIDO */
+
+.main{
+    display: flex;
+}
+
+/* CONTENIDO */
+
+.content{
+    padding: 20px;
+    width: calc(100dvw - var(--asideBoxWidth));
+    box-sizing: border-box;
+}
+
+.content h1{
+    font-size: 3rem;
+    margin: 0;
+}
+
+
+/* ACTIVIDADES */
+
+.actividades{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.actividades .actividad{
+    width: 25%;
+    min-height: 300px;
+    box-sizing: border-box;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 10px;
+}
+
+.actividades .actividad h3{
+    margin: 0;
+}
+
+.actividades .actividad p{
+    margin: 0;
+}
+
+.actividades .actividad .imageContainer{
+    height: 100%;
+}
+
+.actividades .actividad .imagen{
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.actividades .actividad .info{
+    padding: 10px;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: auto;
+    gap: 5px;
+
+    transition: .2s;
+
+    flex-direction: column;
+}
+
+.actividades .actividad .info:hover{
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+}
+
+.actividades .actividad .ghostImagen{
+    width: 100%;
+    height: 70%;
+}
+
+.actividades .actividad .info .ghostTitle{
+    width: 100%;
+    height: 30%;
+}
+
+.actividades .actividad .info .ghostText{
+    width: 100%;
+    height: 70%;
+}
+
+.ghostImagen, .ghostText, .ghostTitle{
+    border-radius: 5px;
+    background-color: rgb(196, 196, 196);
+    animation: ghostAnimation 2s ease-in-out infinite;
+}

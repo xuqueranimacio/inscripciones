@@ -1,0 +1,42 @@
+.main{
+    width: 60%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.main input{
+    width: 100%;
+    border: 1px solid rgb(214, 214, 214);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.main textarea{
+    width: 100%;
+    border: 1px solid rgb(214, 214, 214);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    min-height: 200px;
+}
+
+.main button{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: var(--primary-brand-color);
+    padding: 10px;
+
+    transition: .2s;
+
+}
+
+.main button:hover{
+    cursor: pointer;
+    opacity: 80%;
+}
