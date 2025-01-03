@@ -3,6 +3,7 @@ import styles from "../actividad.module.css";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { requestActividad } from "@/app/components/db";
+import { FormGetter, jsonToXlsx } from "@/app/components/utils";
 
 export default function Page() {
 
@@ -11,52 +12,69 @@ export default function Page() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [actividad, setActividad] = useState(null);
+    const [isForm, setIsForm] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-
         const id = params.id;
         if (id) {
             // Obtener la actividad desde la base de datos
-            const actividad = requestActividad(id).then(response => {
+            requestActividad(id).then(response => {
                 if (response.success) {
                     setActividad(response.actividad);
+                    if(response.actividad.formulario){
+                        setIsForm(true);
+                    }
                 }
+                setIsLoading(false);
             });
-            console.log("Actividad:", actividad);
         }
-
     }, []);
 
     return (
         <main className={styles.main}>
             <div className={styles.container}>
-                <div className={styles.img}>
-                    <img src={`data:${actividad?.tipo_imagen};base64,${actividad?.imagen}`} alt={actividad?.nombre} />
-                </div>
+                {isLoading ? (
+                    <div className={styles.ghostImg}></div>
+                ) : (
+                    <div className={styles.img}>
+                        <img src={`data:${actividad?.tipo_imagen};base64,${actividad?.imagen}`} alt={actividad?.nombre} />
+                    </div>
+                )}
                 <div className={styles.info}>
-                    <h1>{actividad?.nombre}</h1>
-                    <h2>Descripción</h2>
-                    <p>{actividad?.descripcion}</p>
-                    <h2>Fechas</h2>
-                    <p><b>Fecha de inicio:</b> {actividad?.fecha_inicio}</p>
-                    <p><b>Fecha de fin:</b> {actividad?.fecha_fin}</p>
+                    {isLoading ? (
+                        <>
+                            <div className={styles.ghostTitle}></div>
+                            <div className={styles.ghostText}></div>
+                            <div className={styles.ghostText}></div>
+                        </>
+                    ) : (
+                        <>
+                            <h1>{actividad?.nombre}</h1>
+                            <h2>Descripción</h2>
+                            <p>{actividad?.descripcion}</p>
+                            <h2>Fechas</h2>
+                            <p><b>Fecha de inicio:</b> {actividad?.fecha_inicio}</p>
+                            <p><b>Fecha de fin:</b> {actividad?.fecha_fin}</p>
+                        </>
+                    )}
                 </div>
             </div>
 
             <section className={styles.form}>
-                <h2>Formulario de Inscripción</h2>
-                <h3>Nombre</h3>
-                <input type="text" name="nombre" placeholder="Nombre" />
-                <h3>Email</h3>
-                <input type="email" name="email" placeholder="Email" />
-                <h3>Teléfono</h3>
-                <input type="tel" name="telefono" placeholder="Teléfono" />
-                <h3>Fecha de Nacimiento</h3>
-                <input type="date" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" />
-                <button>Enviar</button>
+                {isLoading ? (
+                    <div className={styles.ghostForm}></div>
+                ) : isForm ? (
+                    <FormGetter actividadId={params.id} styles={styles} />
+                ) : (
+                    <>
+                        <h1>Formulario no disponible :(</h1>
+                        <p>El formulario no está disponible para esta actividad. Puede ser que aún no se haya abierto el plazo de inscripciones o haya algún tipo de error.
+                        <br /><br />Por favor, contacta con nosotros si crees que hay algún error.
+                        </p>
+                    </>
+                )}
             </section>
-
         </main>
     );
 }

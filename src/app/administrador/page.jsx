@@ -25,6 +25,10 @@ export default function Page({ params }) {
         // Navegar a la página de la actividad usando el router
         router.push(`/administrador/actividad/${id}`);
     };
+
+    const handleCrearActividad = () => {
+        router.push("/administrador/crear-actividad");
+    };
     
     useEffect(() => {
         const user_id = localStorage.getItem("user_id");
@@ -55,11 +59,11 @@ export default function Page({ params }) {
             <aside className={styles.aside}>
                 <a className={styles.asideBox}>Inicio</a>
                 <a className={styles.asideBox}>Estadísticas</a>
-                <a className={styles.asideBox}>Crear Actividad</a>
+                <a className={styles.asideBox} onClick={handleCrearActividad}>Crear Actividad</a>
             </aside>
     
             <div className={styles.content}>
-                <h1>¡Bienvenido/a de nuevo {nombre}!</h1>
+                <h1>Panel de Administrador</h1>
                 <h2>Mis Actividades</h2>
 
                 {isLoading ? (

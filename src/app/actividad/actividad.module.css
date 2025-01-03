@@ -1,8 +1,20 @@
+@keyframes fadeIn {
+    0%{
+        opacity: 0.25;
+    }50%{
+        opacity: 0.75;
+    }100%{
+        opacity: 0.25;
+    }
+}
+
+
 .main{
     width: 70%;
     margin: 0 auto;
     padding-top: 20px;
     border-inline: 1px solid rgb(214, 214, 214);
+    min-height: calc(100vh - 100px);
 }
 
 .container{
@@ -106,4 +118,38 @@
 
 .formulario button:hover{
     opacity: 0.8;
+}
+
+.ghostImg{
+    width: 50%;
+    height: 300px;
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+    animation: fadeIn 1s infinite;
+}
+
+.ghostTitle{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+    animation: fadeIn 1s infinite;
+    margin-bottom: 30px;
+}
+
+.ghostText{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    animation: fadeIn 1s infinite;
+}
+
+.ghostForm{
+    width: 100%;
+    height: 300px;
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+    animation: fadeIn 1s infinite;
 }

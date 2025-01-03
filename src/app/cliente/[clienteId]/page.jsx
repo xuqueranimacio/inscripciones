@@ -2,7 +2,7 @@
 import styles from "../cliente.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { requestActividades } from "@/app/components/db";
+import { obtenerActividadesDeUsuario, requestActividades } from "@/app/components/db";
 
 export default function Page({ params }) {
 
@@ -10,6 +10,7 @@ export default function Page({ params }) {
 
     const [nombre, setNombre] = useState(null);
     const [misActividades, setMisActividades] = useState(null);
+    const [todasActividades, setTodasActividades] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -24,13 +25,22 @@ export default function Page({ params }) {
         }
     
         // RECOGER ACTIVIDADES DEL USUARIO
-        requestActividades().then(response => {
+        obtenerActividadesDeUsuario(user_id).then(response => {
             if (response.success) {
                 setMisActividades(response.actividades);
             } else {
                 console.error("Error al obtener actividades:", response.error);
             }
             setIsLoading(false); // Desactivar el indicador de carga
+        });
+
+        // RECOGER TODAS LAS ACTIVIDADES
+        requestActividades().then(response => {
+            if (response.success) {
+                setTodasActividades(response.actividades);
+            } else {
+                console.error("Error al obtener actividades:", response.error);
+            }
         });
     }, [router]); // Asegúrate de pasar `router` como dependencia
 
@@ -65,16 +75,16 @@ export default function Page({ params }) {
                 ) : (
                     <div className={styles.actividades}>
                         {misActividades && misActividades.length > 0 ? (
-                            misActividades.map((actividad, index) => (
-                                <div key={actividad.id || index} className={styles.actividad}>
+                            misActividades.slice(0, 4).map((actividad, index) => (
+                                <div key={actividad.actividad_id || index} className={styles.actividad}>
                                     <div className={styles.imageContainer}>
-                                        <img className={styles.imagen} src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+                                        <img className={styles.imagen} src={`data:${actividad.tipoimagen};base64,${actividad.imagen}`} alt={actividad.nombre_actividad} />
                                     </div>
                                     <a 
                                         className={styles.info} 
                                         onClick={handleActivityClick} 
-                                        data-id={actividad.id}>
-                                        <h3>{actividad.nombre}</h3>
+                                        data-id={actividad.actividad_id}>
+                                        <h3>{actividad.nombre_actividad}</h3>
                                     </a>
                                 </div>
                             ))
@@ -84,6 +94,25 @@ export default function Page({ params }) {
                     </div>
                 )}
                 <h2>Explora Xuquer Animacio</h2>
+                <div className={styles.actividades}>
+                    {todasActividades && todasActividades.length > 0 ? (
+                        todasActividades.map((actividad, index) => (
+                            <div key={actividad.id || index} className={styles.actividad}>
+                                <div className={styles.imageContainer}>
+                                    <img className={styles.imagen} src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+                                </div>
+                                <a 
+                                    className={styles.info} 
+                                    onClick={handleActivityClick} 
+                                    data-id={actividad.id}>
+                                    <h3>{actividad.nombre}</h3>
+                                </a>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No hay actividades disponibles en este momento.</p>
+                    )}
+                </div>
             </div>
         </main>
     );

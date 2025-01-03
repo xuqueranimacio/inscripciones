@@ -70,13 +70,14 @@ export default function Page() {
 
             if (data.nombre && data.descripcion && data.imagen) {
                 console.log("Datos válidos:", data);
-                const responseActividad = await crearActividad(data);
-                if (responseActividad.success) {
-                    console.log("Actividad creada con éxito:", responseActividad.actividad_id);
-                    router.push("/administrador/pages");
-                } else {
-                    console.error("Error al crear actividad:", responseActividad.error);
-                }
+                const responseActividad = await crearActividad(data).then((response) => {
+                    if (response.success) {
+                        console.log("Actividad creada con éxito:", response.actividad_id);
+                        router.push("/administrador/actividad/" + response.actividad_id);
+                    } else {
+                        console.error("Error al crear actividad:", response.error);
+                    }
+                });
             } else {
                 console.error("Datos no válidos:", data);
             }
@@ -95,6 +96,7 @@ export default function Page() {
                 name="nombre"
                 value={nombre}
                 onChange={handleInputChange}
+                autoComplete="off"
             />
 
             <h2>Descripción</h2>
@@ -102,6 +104,7 @@ export default function Page() {
                 name="descripcion"
                 value={descripcion}
                 onChange={handleInputChange}
+                autoComplete="off"
             ></textarea>
 
             <h2>Fecha Inicio (opcional)</h2>
@@ -110,6 +113,7 @@ export default function Page() {
                 name="fechaInicio"
                 value={fechaInicio}
                 onChange={handleInputChange}
+                autoComplete="off"
             />
 
             <h2>Fecha Fin (opcional)</h2>
