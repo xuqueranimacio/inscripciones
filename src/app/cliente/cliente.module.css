@@ -1,4 +1,4 @@
-:root{
+:global(:root) {
     --asideBoxWidth: 200px;
 }
 
