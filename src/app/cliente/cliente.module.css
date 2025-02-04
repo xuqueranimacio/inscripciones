@@ -108,6 +108,8 @@
 .actividades .actividad .imageContainer{
     height: 60%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
     object-fit: contain;
     border-radius: 5px;
 }

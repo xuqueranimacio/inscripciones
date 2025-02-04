@@ -2,11 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import styles from "../../../actividad/actividad.module.css";
-import { obtenerInscripcionesActividad, requestActividad } from "@/app/components/db";
+import { borrarActividad, obtenerInscripcionesActividad, requestActividad } from "@/app/components/db";
 import { FormCreator, jsonToXlsx } from "@/app/components/utils";
 
 export default function Page() {
+
+  const router = useRouter();
+
   const params = useParams();
   const [actividad, setActividad] = useState(null);
   const [actividadID, setActividadID] = useState(null);
@@ -21,6 +25,17 @@ export default function Page() {
         }
       }
     )
+  }
+
+  const handleBorrarActividad = () => {
+    if (confirm("¿Estás seguro de que deseas borrar esta actividad?")) {
+      borrarActividad(actividadID).then((response) => {
+        if (response.success) {
+          alert("Actividad borrada correctamente");
+           router.push("/administrador");
+        }
+      });
+    }
   }
 
   useEffect(() => {
@@ -66,6 +81,11 @@ export default function Page() {
       <div className={styles.excelContainer}>
         <h2>Excel con Datos</h2>
         <button onClick={handleDownloadXlsx} className={styles.excel}>Descargar Excel</button>
+      </div>
+
+      <div className={styles.excelContainer}>
+        <h2>Borrar Actividad</h2>
+        <button onClick={handleBorrarActividad} className={styles.borrar}>Borrar Actividad</button>
       </div>
     </main>
   );

@@ -28,6 +28,16 @@ export default function RootLayout({ children }) {
           router.push("/login");
   };
 
+  const handleResize = () => {
+    if(window.screen.width < 768) {
+      usuario.style.display = "none";
+      menu.style.display = "block";
+    } else {
+        usuario.style.display = "block";
+        menu.style.display = "none";
+    }
+  }
+
   // Función para verificar si el usuario está logueado
   const checkLoginStatus = () => {
     const user_id = localStorage.getItem("user_id");
@@ -51,25 +61,10 @@ export default function RootLayout({ children }) {
     let usuario = document.getElementById("usuario");
     let menu = document.getElementById("menu")
     
-    if(window.screen.width < 768) {
-        usuario.style.display = "none";
-        menu.style.display = "block";
-    } else {
-        usuario.style.display = "block";
-        menu.style.display = "none";
-    }
+    
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-
-    const storageChangeListener = () => {
-      setIsLoged(checkLoginStatus());
-    };
-
-    window.addEventListener("storage", storageChangeListener);
-
-    // Limpiar el listener cuando el componente se desmonte
-    return () => {
-      window.removeEventListener("storage", storageChangeListener);
-    };
   }, []);
 
   return (

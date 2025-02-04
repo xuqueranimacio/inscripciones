@@ -206,3 +206,15 @@ export async function obtenerInscripcionesActividad(id){
         return { success: false, error: error.message };
     }
 }
+
+export async function borrarActividad(id) {
+    try {
+      await client.execute("DELETE FROM inscripciones WHERE actividad_id = ?;", [id]);
+      const result = await client.execute("DELETE FROM actividades WHERE id = ?;", [id]);
+  
+      return { success: true };
+    } catch (error) {
+      console.error("Error al borrar actividad:", error);
+      return { success: false, error };
+    }
+  }
