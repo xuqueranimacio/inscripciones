@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { actualizarFormularioActividad, obtenerFormularioActividad, subirInscripcionActividad } from "./db";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
+import styles from "../administrador/crear-actividad/crear.module.css";
 
 export async function sesionUsuario(id, nombre){
     localStorage.setItem("user_id", id);
@@ -95,8 +96,8 @@ export function FormCreator({ actividadId, styles, initialFields = [] }) {
   };
 
   return (
-    <section style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Creador de Formularios</h1>
+    <section className={styles.creatorSection}>
+      <h1 className={styles.title}>Creador de Formularios</h1>
 
       <section style={{ marginBottom: "20px" }}>
         <h2>Añadir Campo</h2>

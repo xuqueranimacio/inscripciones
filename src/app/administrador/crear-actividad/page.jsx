@@ -88,7 +88,7 @@ export default function Page() {
 
     return (
         <main className={styles.main}>
-            <h1>Crear Actividad</h1>
+            <h1 className={styles.title}>Crear Actividad</h1>
 
             <h2>Nombre</h2>
             <input

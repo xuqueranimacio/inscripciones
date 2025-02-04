@@ -51,7 +51,6 @@ export default function Page() {
                     ) : (
                         <>
                             <h1>{actividad?.nombre}</h1>
-                            <h2>Descripción</h2>
                             <p>{actividad?.descripcion}</p>
                             <h2>Fechas</h2>
                             <p><b>Fecha de inicio:</b> {actividad?.fecha_inicio}</p>

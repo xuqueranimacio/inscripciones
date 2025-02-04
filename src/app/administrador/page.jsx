@@ -89,31 +89,6 @@ export default function Page({ params }) {
                         )}
                     </div>
                 )}
-                
-                <h2>Explora Xuquer Animacio</h2>
-                {isLoading ? (
-                    ghostActividades() // Renderiza los placeholders mientras carga
-                ) : (
-                    <div className={styles.actividades}>
-                        {misActividades && misActividades.length > 0 ? (
-                            misActividades.map((actividad, index) => (
-                                <div key={actividad.id || index} className={styles.actividad}>
-                                    <div className={styles.imagenContainer}>
-                                        <img className={styles.imagen} src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
-                                    </div>
-                                    <a 
-                                        className={styles.info} 
-                                        onClick={handleActivityClick} 
-                                        data-id={actividad.id}>
-                                        <h3>{actividad.nombre}</h3>
-                                    </a>
-                                </div>
-                            ))
-                        ) : (
-                            <p>Inscribete en alguna actividad para verla aquí.</p>
-                        )}
-                    </div>
-                )}
             </div>
         </main>
     );
