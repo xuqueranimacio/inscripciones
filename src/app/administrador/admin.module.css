@@ -111,6 +111,7 @@
 
 .actividades .actividad .imageContainer{
     height: 60%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -118,18 +119,20 @@
     border-radius: 5px;
 }
 
-.actividades .actividad .imagen{
+.actividades .actividad .imageContainer img{
     border-radius: 5px;
     width: 100%;
 }
 
 .actividades .actividad .info{
     padding: 10px;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
     border: 1px solid rgb(199, 199, 199);
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
-    margin-top: auto;
     gap: 5px;
 
     transition: .2s;

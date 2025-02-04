@@ -85,8 +85,8 @@ export default function Page({ params }) {
                         {misActividades && misActividades.length > 0 ? (
                             misActividades.map((actividad, index) => (
                                 <div key={actividad.id || index} className={styles.actividad}>
-                                    <div className={styles.imagenContainer}>
-                                        <img className={styles.imagen} src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+                                    <div className={styles.imageContainer}>
+                                        <img src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
                                     </div>
                                     <a 
                                         className={styles.info} 
