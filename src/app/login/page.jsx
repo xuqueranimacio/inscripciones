@@ -28,6 +28,10 @@ export default function Home() {
     contrasena: ""
   });
 
+  const handleRegisterClick = () => {
+    router.push("/registro");
+  };
+
   // Función para validar el formulario
   const validateForm = () => {
     let formErrors = {};
@@ -106,7 +110,9 @@ export default function Home() {
           {errors.general && <p style={{color: 'red'}}>{errors.general}</p>}
 
           <button onClick={handleSubmit} className={styles.postButton}>Acceder</button>
+          
         </div>
+        <p>O registrate <a onClick={handleRegisterClick} className={styles.registro}><b>aquí</b></a></p>
       </div>
     </main>
   );

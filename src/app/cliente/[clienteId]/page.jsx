@@ -13,6 +13,11 @@ export default function Page({ params }) {
     const [todasActividades, setTodasActividades] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const handleLogOut = () => {
+        localStorage.clear();
+        router.push("/");
+    };
+
     useEffect(() => {
         const user_id = localStorage.getItem("user_id");
         const nombre = localStorage.getItem("nombre");
@@ -65,6 +70,7 @@ export default function Page({ params }) {
                 <a className={styles.asideBox}>Explorar Actividades</a>
                 <a className={styles.asideBox}>Mis Actividades</a>
                 <a className={styles.asideBox}>Pagos</a>
+                <a className={styles.asideBox} onClick={handleLogOut}>Cerrar Sesión</a>
             </aside>
     
             <div className={styles.content}>

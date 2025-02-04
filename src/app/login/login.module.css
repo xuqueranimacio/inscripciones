@@ -1,6 +1,6 @@
 .main{
     display: flex;
-    height: 100dvh;
+    width: 100%;
     flex-direction: column;
 
     align-items: center;
@@ -76,7 +76,29 @@
 
 }
 
+.registro{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .error{
     color: red;
     margin: 0;
 }
+
+@media (min-width:320px)  { 
+    .container{
+        width: 100%;
+    }
+  }
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width:801px)  { 
+    .container{
+        width: 500px;
+    }
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }

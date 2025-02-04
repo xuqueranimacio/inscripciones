@@ -7,6 +7,14 @@ import { registroCliente } from "../components/db";
 export default function Home() {
   const router = useRouter();
 
+  const handleClickLogin = () => {
+    router.push("/login");
+  };
+
+  const handleTermsClick = () => {
+    router.push("/terms");
+  };
+
   const [clienteData, setClienteData] = useState({
     nombre: "",
     apellidos: "",
@@ -171,6 +179,8 @@ export default function Home() {
           </button>
         </form>
       </div>
+      <p>O inicia sesión <a onClick={handleClickLogin} className={styles.registro}><b>aquí</b></a></p>
+      <p><i>Al registrarte, aceptas nuestros <a onClick={handleTermsClick} className={styles.registro}>términos y condiciones</a>.</i></p>
     </main>
   );
 }

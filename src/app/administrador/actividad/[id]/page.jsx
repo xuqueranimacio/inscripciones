@@ -62,7 +62,11 @@ export default function Page() {
       </div>
 
       <FormCreator actividadId={actividadID} styles={styles} initialFields={formFields} />
-      <button onClick={handleDownloadXlsx}>Descargar Excel</button>
+
+      <div className={styles.excelContainer}>
+        <h2>Excel con Datos</h2>
+        <button onClick={handleDownloadXlsx} className={styles.excel}>Descargar Excel</button>
+      </div>
     </main>
   );
 }

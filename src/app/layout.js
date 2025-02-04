@@ -24,6 +24,10 @@ export default function RootLayout({ children }) {
   const [isLoged, setIsLoged] = useState(false);
   const router = useRouter();
 
+  const handleUserClick = () => {
+    router.push("/login");
+  };
+
   // Función para verificar si el usuario está logueado
   const checkLoginStatus = () => {
     const user_id = localStorage.getItem("user_id");
@@ -38,16 +42,6 @@ export default function RootLayout({ children }) {
   
   const handleLogoClick = () => {
     router.push("/");
-  };
-
-  const handleLogOut = () => {
-    localStorage.clear();
-    setIsLoged(false);
-    router.push("/");
-  };
-
-  const handleLogIn = () => {
-    router.push("/login");
   };
 
   // Re-renderizar cuando localStorage cambie
@@ -73,12 +67,7 @@ export default function RootLayout({ children }) {
           </a>
 
           <nav className={`${geistMono.variable} nav`}>
-            {isLoged ? (
-              <a onClick={handleLogOut}>Cerrar Sesión</a>
-            ) : (
-              <a onClick={handleLogIn}>Iniciar Sesión</a>
-            )}
-            <a onClick={handleLogOut}>Cerrar Sesión</a>
+              <a onClick={handleUserClick}><img src="usuario.png" /></a>
           </nav>
         </header>
 

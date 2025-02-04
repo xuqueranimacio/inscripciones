@@ -196,6 +196,23 @@
     margin: 0;
 }
 
+.excelContainer{
+    margin-left: 20px;
+}
+
+.excel{
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(161, 161, 161);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.excel:hover{
+    background-color: rgb(214, 214, 214);
+}
+
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
 @media (min-width:320px)  { 
 
