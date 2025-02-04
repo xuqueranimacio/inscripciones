@@ -68,7 +68,7 @@
 
 .content{
     padding: 20px;
-    width: calc(100dvw - var(--asideBoxWidth));
+
     box-sizing: border-box;
 }
 
@@ -158,3 +158,62 @@
     background-color: rgb(196, 196, 196);
     animation: ghostAnimation 2s ease-in-out infinite;
 }
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (min-width:320px)  { 
+
+    .aside{
+        display: none;
+        background-color: white;
+    }
+
+    .content{
+        width: 100%;
+    }
+
+    .content h1{
+        font-size: 2rem;
+    }
+
+    .actividades{
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .actividades .actividad{
+        width: 100%;
+    }
+
+    #usuario{
+        display: none;
+    }
+
+  }
+  @media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ }
+  @media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+  
+  /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+  @media (min-width:801px)  {
+    .aside{
+        display: block;
+    }
+
+    .content{
+        width: calc(100dvw - var(--asideBoxWidth));
+    }
+
+    .content h1{
+        font-size: 2rem;
+    }
+
+    .actividades{
+        flex-direction: row;
+        box-sizing: border-box;
+    }
+
+    .actividades .actividad{
+        width: 25%;
+    }
+  }
+  @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+  @media (min-width:1281px) { /* hi-res laptops and desktops */ }

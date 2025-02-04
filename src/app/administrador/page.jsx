@@ -31,15 +31,27 @@ export default function Page({ params }) {
     };
     
     useEffect(() => {
+
+        let menu = document.getElementById("menu")
+        menu.addEventListener("click", () => {
+            let aside = document.getElementById("aside");
+            if(aside.style.display === "none") {
+                aside.style.display = "block";
+                aside.style.position = "absolute";
+                aside.style.left = "auto";
+                aside.style.right = "0";
+                aside.style.borderLeft = "1px solid rgb(214, 214, 214)";
+            } else {
+                aside.style.display = "none";
+                aside.style.position = "relative";
+                aside.style.left = "0";
+                aside.style.right = "auto";
+                aside.style.borderLeft = "none";
+            }
+        });
+
         const user_id = localStorage.getItem("user_id");
         const nombre = localStorage.getItem("nombre");
-    
-        if (user_id && nombre) {
-            setNombre(nombre);
-        } else {
-            router.push("/login");
-            return; // Detén la ejecución si no hay usuario logeado.
-        }
     
         // RECOGER ACTIVIDADES DEL USUARIO
         requestActividades().then(response => {
@@ -56,7 +68,7 @@ export default function Page({ params }) {
     return (
 
         <main className={styles.main}>
-            <aside className={styles.aside}>
+            <aside className={styles.aside} id="aside">
                 <a className={styles.asideBox}>Inicio</a>
                 <a className={styles.asideBox}>Estadísticas</a>
                 <a className={styles.asideBox} onClick={handleCrearActividad}>Crear Actividad</a>

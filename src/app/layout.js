@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   const router = useRouter();
 
   const handleUserClick = () => {
-    router.push("/login");
+          router.push("/login");
   };
 
   // Función para verificar si el usuario está logueado
@@ -46,6 +46,20 @@ export default function RootLayout({ children }) {
 
   // Re-renderizar cuando localStorage cambie
   useEffect(() => {
+
+
+    let usuario = document.getElementById("usuario");
+    let menu = document.getElementById("menu")
+    
+    if(window.screen.width < 768) {
+        usuario.style.display = "none";
+        menu.style.display = "block";
+    } else {
+        usuario.style.display = "block";
+        menu.style.display = "none";
+    }
+
+
     const storageChangeListener = () => {
       setIsLoged(checkLoginStatus());
     };
@@ -60,15 +74,23 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <title>Inscripciones Xuquer Animació</title>
+      </head>
       <body className={`${geistSans.variable}`}>
         <header>
           <a onClick={handleLogoClick} className="logo">
             <img src="/logo.png" alt="Xuquer Animacio" />
           </a>
 
-          <nav className={`${geistMono.variable} nav`}>
-              <a onClick={handleUserClick}><img src="usuario.png" /></a>
+          <nav className={`${geistMono.variable} nav`} id="usuario">
+              <a onClick={handleUserClick}><img src="/usuario.png" /></a>
           </nav>
+
+          <nav id="menu">
+            <a><img src="/menu.png" /></a>
+          </nav>
+
         </header>
 
         {children}
