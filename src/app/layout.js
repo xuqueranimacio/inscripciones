@@ -71,6 +71,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <title>Inscripciones Xuquer Animació</title>
+        <meta name="robots" content="noindex, nofollow" />
       </head>
       <body className={`${geistSans.variable}`}>
         <header>
