@@ -342,15 +342,25 @@
   .howToText{
     display: flex;
     gap: 20px;
+    height: 100%;
     align-items: center;
   }
 
+  .howToSectionContent .howToText p{
+
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+
+  }
+
   .howToText b{
-    color: #f17e5d;
+    color: #41c9b9;
   }
 
   .howToText a{
-    color: #f17e5d;
+    color: #41c9b9;
     font-weight: bolder;
   }
 
@@ -394,6 +404,7 @@
   .howToSectionContent .orderNumber{
     font-weight: bold;
     font-size: 4rem;
+    color: #f17e5d;
   }
 
   .message{
@@ -410,7 +421,11 @@
   }
 
   .message:hover::after{
-    filter: blur(3px);
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    left: -8px;
+    filter: blur(10px);
+    top: -8px;
   }
 
   .message::after{
@@ -491,6 +506,7 @@
     background-color: #ff5f32;
     filter: blur(200px);
     z-index: -1;
+    animation: ghostAnimation 10s ease-in-out infinite;
   }
 
 
