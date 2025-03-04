@@ -15,6 +15,10 @@ export default function Page() {
     const [isForm, setIsForm] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const handleGoBack = () => {
+        router.push("/#inscripciones");
+    }
+
     useEffect(() => {
         const id = params.id;
         if (id) {
@@ -33,6 +37,13 @@ export default function Page() {
 
     return (
         <main className={styles.main}>
+
+            <div className={styles.buttonSection}>
+                <button className={styles.backButton} onClick={handleGoBack}>
+                <img src="/back.png" alt="" />
+                </button>
+            </div>
+
             <div className={styles.container}>
                 {isLoading ? (
                     <div className={styles.ghostImg}></div>

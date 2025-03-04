@@ -1,0 +1,579 @@
+.footer-wrapper{
+
+    background-color: #252525;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    padding: 20px;
+
+}
+
+.footer-title{
+
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+    
+
+}
+
+.footer-title img{
+
+    height: 150px;
+
+}
+
+.footer-info{
+
+    width: 80%;
+    display: flex;
+    justify-content: left;
+
+    gap: 20px;
+    
+}
+
+.footer-section{
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.footer-section a{
+
+    color: #bdbdbd;
+    text-decoration: none;
+    list-style: none;
+    margin-left: 0;
+
+    transition: 0.2s;
+
+}
+
+.footer-section a:hover{
+
+    text-decoration: underline;
+    color: white;
+
+}
+
+.footer-section h2{
+
+    color: white;
+    font-size: 30px;
+    margin-block: 5px;
+
+}
+
+@media (min-width: 1281px) {
+
+    .menuBurger {
+      display: none;
+    }
+  
+  }
+  
+  /* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+  
+    .menuBurger {
+      display: none;
+    }
+  
+    .container {
+      padding: 20px;
+      margin: 0;
+      width: 100%;
+    }
+  
+  }
+  
+  /* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    :root {
+  
+      --container-width: 350px;
+  
+    }
+  
+    .swiper-img {
+      height: 450px;
+      object-fit: cover;
+    }
+  
+    .container {
+      padding: 20px;
+      margin: 0;
+      width: 100%;
+    }
+  
+    .header .list {
+      display: none;
+    }
+  
+    .img-title {
+      height: auto;
+    }
+  
+    .card {
+      flex-basis: 100%;
+    }
+  
+    .aboutus {
+      flex-direction: column;
+    }
+  
+    #aboutus {
+      height: auto;
+    }
+  
+    .about-img {
+      width: 100%;
+    }
+  
+    .about-img img {
+      width: 100%;
+    }
+  
+    .about-title {
+      width: 100%;
+    }
+  
+    .footer-wrapper {
+      flex-direction: column;
+      height: auto;
+      gap: 10px;
+    }
+  
+    .footer-section {
+      width: 100%;
+      border-left: none;
+    }
+  
+    .absolute-title {
+  
+      opacity: 1;
+      visibility: visible;
+      text-align: center;
+  
+    }
+  
+    .footer-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    .footer-title {
+      width: auto;
+      height: auto;
+      flex-basis: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .footer-title img {
+      width: 150px;
+      height: 100px;
+    }
+  
+    .footer-section {
+      flex-basis: 23%;
+    }
+  
+    .absolute-title a h1 {
+      font-size: 60px;
+    }
+  
+    #firstGrid,
+    #secGrid,
+    #thirdGrid,
+    #fourthGrid {
+      font-size: 33px;
+      text-wrap: pretty;
+      text-align: center;
+    }
+  
+  }
+  
+  /* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  
+    :root {
+  
+      --container-width: 350px;
+  
+    }
+  
+    .swiper-img {
+      height: 450px;
+      object-fit: cover;
+    }
+  
+    .container {
+      padding: 20px;
+      margin: 0;
+      width: 100%;
+    }
+  
+    .header .list {
+      display: none;
+    }
+  
+    .img-title {
+      height: auto;
+    }
+  
+    .card {
+      flex-basis: 100%;
+    }
+  
+    .aboutus {
+      flex-direction: column;
+    }
+  
+    #aboutus {
+      height: auto;
+    }
+  
+    .about-img {
+      width: 100%;
+    }
+  
+    .about-img img {
+      width: 100%;
+    }
+  
+    .about-title {
+      width: 100%;
+    }
+  
+    .footer-wrapper {
+      flex-direction: column;
+      height: auto;
+      gap: 30px;
+    }
+  
+    .footer-section {
+      width: 100%;
+      border-left: none;
+    }
+  
+    .absolute-title {
+  
+      text-align: center;
+  
+    }
+  
+    .footer-info {
+      flex-direction: column;
+    }
+  
+    .absolute-title a h1 {
+      font-size: 60px;
+    }
+  
+    #firstGrid,
+    #secGrid,
+    #thirdGrid,
+    #fourthGrid {
+      font-size: 40px;
+      text-wrap: pretty;
+      text-align: center;
+    }
+  
+    .activitats-card {
+      flex-direction: column;
+    }
+  
+    .valorsText{
+      font-size: 1.5rem;
+    }
+  
+    .circles{
+      height: auto;
+      width: 100%;
+    }
+  
+  }
+  
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+  
+    :root {
+  
+      --container-width: 350px;
+  
+    }
+  
+    .swiper-img {
+      height: 450px;
+      object-fit: cover;
+    }
+  
+    .container {
+      padding: 20px;
+      margin: 0;
+      width: 100%;
+    }
+  
+    .header .list {
+      display: none;
+    }
+  
+    .img-title {
+      height: auto;
+    }
+  
+    .card {
+      flex-basis: 100%;
+    }
+  
+    .aboutus {
+      flex-direction: column;
+    }
+  
+    #aboutus {
+      height: auto;
+    }
+  
+    .about-img {
+      width: 100%;
+    }
+  
+    .about-img img {
+      width: 100%;
+    }
+  
+    .about-title {
+      width: 100%;
+    }
+  
+    .footer-wrapper {
+      flex-direction: column;
+      height: auto;
+      gap: 30px;
+    }
+  
+    .footer-section {
+      width: 100%;
+      border-left: none;
+    }
+  
+    .absolute-title {
+  
+      opacity: 1;
+      visibility: visible;
+      text-align: center;
+  
+    }
+  
+    .footer-info {
+      flex-direction: column;
+    }
+  
+    .absolute-title a h1 {
+      font-size: 60px;
+    }
+  
+    #firstGrid,
+    #secGrid,
+    #thirdGrid,
+    #fourthGrid {
+      font-size: 33px;
+      text-wrap: pretty;
+      text-align: center;
+    }
+  
+    .activitats-card {
+  
+      flex-direction: column;
+  
+    }
+  
+    .info-section {
+      flex-direction: column;
+    }
+  
+    .valorsText{
+      font-size: 1.5rem;
+    }
+  
+    .circles{
+      height: auto;
+      width: 100%;
+    }
+  
+  }
+  
+  /* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+  
+    :root {
+  
+      --container-width: 350px;
+  
+    }
+  
+    .valorsText{
+      font-size: 1.5rem;
+    }
+  
+    .circles{
+      height: auto;
+      width: 100%;
+    }
+  
+    .swiper-img {
+      height: 400px;
+      object-fit: cover;
+    }
+  
+    .container {
+      padding: 20px;
+      margin: 0;
+      width: 100%;
+    }
+  
+    .header .list {
+      display: none;
+    }
+  
+    .img-title {
+      height: auto;
+    }
+  
+    .card {
+      flex-basis: 100%;
+    }
+  
+    .aboutus {
+      flex-direction: column;
+    }
+  
+    #aboutus {
+      height: auto;
+    }
+  
+    .about-img {
+      width: 100%;
+    }
+  
+    .about-img img {
+      width: 100%;
+    }
+  
+    .about-title {
+      width: 100%;
+    }
+  
+    .footer-wrapper {
+      flex-direction: column;
+      height: auto;
+      gap: 30px;
+    }
+  
+    .footer-section {
+      width: 100%;
+      border-left: none;
+    }
+  
+    .absolute-title {
+  
+      opacity: 1;
+      visibility: visible;
+      text-align: center;
+  
+    }
+  
+    .footer-info {
+      flex-direction: column;
+    }
+  
+    .absolute-title a h1 {
+      font-size: 30px;
+    }
+  
+    .absolute-title p {
+      padding-inline: 30px;
+      font-size: 15px;
+    }
+  
+    #firstGrid,
+    #secGrid,
+    #thirdGrid,
+    #fourthGrid {
+      font-size: 25px;
+      text-wrap: pretty;
+      text-align: center;
+    }
+  
+    .activitats-card {
+  
+      flex-direction: column;
+  
+    }
+  
+    #more {
+      font-size: 40px;
+    }
+  
+    .myimg{
+      height: auto;
+      width: 100%;
+    }
+  
+    .info-section {
+      flex-direction: column;
+    }
+  
+    .mySwiper {
+      width: 100%;
+    }
+  
+    .activitats-card .info h1{
+      font-size: 2.6rem;
+    }
+  
+    .mySwiper .swiper .swiper-wrapper .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+  }
+  
+  }

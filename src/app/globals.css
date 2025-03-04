@@ -18,6 +18,10 @@
 
 }
 
+*{
+  scroll-behavior: smooth;
+}
+
 
 body{
   margin: 0;
@@ -85,6 +89,30 @@ header nav a{
 
 header nav a:hover{
   cursor: pointer;
+}
+
+.navLinks{
+  margin-right: 10px;
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.navLinks a{
+  text-decoration: none;
+  color: #f17e5d;
+  font-weight: bold;
+  padding: 5px;
+
+  border-bottom: 1px solid #41c9b9;
+  transition: .1s;
+
+}
+
+.navLinks a:hover{
+  border-bottom: 4px solid #f17e5d;
 }
 
 #menu{

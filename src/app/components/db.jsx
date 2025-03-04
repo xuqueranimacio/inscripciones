@@ -148,6 +148,23 @@ export async function obtenerFormularioActividad(id) {
     }
 }
 
+export async function obtenerCountInscripcionesActividad(id) {
+    try {
+        const result = await client.execute(`
+            SELECT COUNT(*) as total FROM inscripciones WHERE actividad_id = ?;
+        `, [id]);
+
+        if (result.rows.length > 0) {
+            return { success: true, total: result.rows[0].total };
+        } else {
+            return { success: false, error: "Formulario no encontrado" };
+        }
+    } catch (error) {
+        console.error('Error al obtener formulario actividad:', error);
+        return { success: false, error: error.message };
+    }
+}
+
 export async function subirInscripcionActividad(actividad_id, formularioData){
 
     const inscripcion_id = crypto.randomUUID();

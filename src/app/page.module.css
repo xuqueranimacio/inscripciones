@@ -10,9 +10,47 @@
 
 /* MAIN CONTENIDO */
 
-.main{
+/* SECCION HERO */
+
+
+.heroSection{
   display: flex;
+  min-height: 60dvh;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(214, 214, 214);
 }
+
+.heroSection .heroContent{
+  width: 50%;
+}
+
+.heroSection .heroContent h1{
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+}
+
+.heroSection .heroContent p{
+  font-size: 1.2rem;
+  text-wrap: pretty;
+  padding-inline: 20px;
+  text-align: center;
+}
+
+.heroSection .heroImage{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroSection .heroImage img{
+  width: 100%;
+}
+
 
 /* CONTENIDO */
 
@@ -20,6 +58,9 @@
   padding: 20px;
   width: calc(100dvw - var(--asideBoxWidth));
   box-sizing: border-box;
+  background-image: linear-gradient(to top, #f17e5d ,#ff5f32 , #f17e5d);
+  color: white;
+  margin-bottom: 20px;
 }
 
 
@@ -38,6 +79,8 @@
   max-height: 300px;
   box-sizing: border-box;
   padding: 20px;
+  background-color: white;
+  color: black;
 
   display: flex;
   flex-direction: column;
@@ -46,6 +89,15 @@
 
   border: 1px solid rgb(214, 214, 214);
   border-radius: 10px;
+
+  transition: 0.2s;
+
+}
+
+.actividades .actividad:hover{
+  -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 0.7);
+  -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 0.7);
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 0.7);
 }
 
 .actividades .actividad h3{
@@ -57,6 +109,7 @@
 }
 
 .actividades .actividad .imageContainer{
+  border: 1px solid rgb(214, 214, 214);
   height: 60%;
   overflow: hidden;
   display: flex;
@@ -88,10 +141,12 @@
 
 .actividades .actividad .info:hover{
   cursor: pointer;
-  background-color: rgb(238, 238, 238);
+  color: white;
+  background-color: #f17e5d;
 }
 
 .actividades .ghostActividad{
+  background-color: white;
   width: 100%;
   height: 300px;
   box-sizing: border-box;
@@ -145,6 +200,20 @@
 
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
 @media (min-width:320px)  { 
+
+  .main{
+    width: 100%;
+    border: none;
+  }
+
+  .heroSection .heroContent{
+    width: 100%;
+  }
+
+  .heroSection .heroImage{
+    display: none;
+  }
+
   .main aside{
       display: none;
   }
@@ -171,16 +240,79 @@
       display: none;
   }
 
+  .heroSection .heroContent .heroButtons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .heroSection .heroContent .heroButtons button{
+    background-color: transparent;
+    border: 1px solid #f17e5d;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: bold;
+    height: 75px;
+    font-size: 1rem;
+
+    transition: .2s;
+
+  }
+
+  .heroSection .heroContent .heroButtons button:hover{
+    background-color: rgb(243, 243, 243);
+  }
+
+  #inscripcionesButton{
+    background-color: #f17e5d;
+    color: white;
+    transition: .2s;
+  }
+
+  #inscripcionesButton:hover{
+    background-color: #00b6a1;
+    color: white;
+  }
+
+  .heroSection .heroContent .heroButtons button img{
+    height: 100%;
+  }
+
+  .heroSection .heroImage img{
+    transition: .2s;
+  }
+
+  .heroSection .heroImage:hover img{
+    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.2));
+  }
+
+
 }
 
 /* smartphones, Android phones, landscape iPhone */
 @media (min-width:480px)  { 
 
 }
-@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+@media (min-width:600px)  { 
+
+  .main{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border-inline: 1px solid rgb(214, 214, 214);
+    margin: 0 auto;
+  }
+
+
+}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (min-width:801px)  { 
+
+
+
   .main aside{
       display: block;
   }
@@ -201,6 +333,71 @@
 
   .actividades .actividad{
       width: 100%;
+  }
+
+  .heroSection .heroContent{
+    width: 50%;
+  }
+
+  .heroSection .heroImage{
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .2s;
+
+  }
+
+  .heroSection .heroContent .heroButtons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .heroSection .heroContent .heroButtons button{
+    background-color: transparent;
+    border: 1px solid #f17e5d;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: bold;
+    height: 75px;
+    font-size: 1rem;
+
+    transition: .2s;
+
+  }
+
+  .heroSection .heroContent .heroButtons button:hover{
+    background-color: rgb(243, 243, 243);
+  }
+
+  #inscripcionesButton{
+    background-color: #f17e5d;
+    color: white;
+    transition: .2s;
+  }
+
+  #inscripcionesButton:hover{
+    background-color: #00b6a1;
+    color: white;
+  }
+
+  .heroSection .heroContent .heroButtons button img{
+    height: 100%;
+  }
+
+  .heroSection .heroImage img{
+    transition: .2s;
+  }
+
+  .heroSection .heroImage:hover img{
+    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.2));
   }
 
 }

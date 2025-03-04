@@ -1,5 +1,6 @@
 "use client"
 import styles from "./page.module.css"
+import Link from 'next/link';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { requestActividades } from "@/app/components/db";
@@ -34,14 +35,34 @@ export default function Page({ params }) {
         console.log("ID:", id);
 
         // Navegar a la página de la actividad usando el router
-        router.push(`/actividad/${id}`);
+        window.open(`/actividad/${id}`);
     };
     
     return (
         <main className={styles.main}>
+
+            <section className={styles.heroSection}>
+                <div className={styles.heroContent}>
+                    <h1>Plataforma de Inscripciones</h1>
+                    <p>Inscribete en las diferentes activadades de Xuquer Animación en muy pocos clics.</p>
+                    <div className={styles.heroButtons}>
+                    <Link href="#inscripciones">
+                        <button id={styles.inscripcionesButton}>Inscripciones Abiertas</button>
+                    </Link>
+                    <Link href="https://xuqueranimacio.es">
+                        <button>
+                            <img src="/logo.png" alt="Volver a Xuquer Animacio" />
+                        </button>
+                    </Link>
+                    </div>
+                </div>
+                <div className={styles.heroImage}>
+                    <img src="/logo.png" alt="Logo de Xuquer Animación" />
+                </div>
+            </section>
     
-            <div className={styles.content}>
-                <h1>Actividades Disponibles:</h1>
+            <div className={styles.content} id="inscripciones">
+                <h1>Inscripciones Abiertas:</h1>
                 <div className={styles.actividades}>
                     {todasActividades && todasActividades.length > 0 ? (
                         todasActividades.map((actividad, index) => (
@@ -62,6 +83,11 @@ export default function Page({ params }) {
                     )}
                 </div>
             </div>
+
+            <section className={styles.howToSection} id="funcionamiento">
+                <h2>¿Cómo Funciona?</h2>
+            </section>
+
         </main>
     );
 }

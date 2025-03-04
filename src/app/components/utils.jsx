@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { actualizarFormularioActividad, obtenerFormularioActividad, subirInscripcionActividad } from "./db";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
-import styles from "../administrador/crear-actividad/crear.module.css";
+import styles from "../actividad/actividad.module.css";
 
 export async function sesionUsuario(id, nombre){
     localStorage.setItem("user_id", id);
     localStorage.setItem("nombre", nombre);
 }
 
-export async function verificarSesion(){
+export function verificarSesion(){
     const user_id = localStorage.getItem("user_id");
     const nombre = localStorage.getItem("nombre");
 
@@ -50,7 +50,7 @@ export function jsonToXlsx(jsonData, fileName) {
     document.body.removeChild(link);
 }
 
-export function FormCreator({ actividadId, styles, initialFields = [] }) {
+export function FormCreator({ actividadId, initialFields = [] }) {
   const [formFields, setFormFields] = useState(initialFields);
   const [newField, setNewField] = useState({ name: "", type: "text", defaultValue: "", options: [] });
   const [radioOptions, setRadioOptions] = useState("");
@@ -128,7 +128,7 @@ export function FormCreator({ actividadId, styles, initialFields = [] }) {
         </div>
 
         {newField.type === "radio" && (
-          <div style={{ marginBottom: "10px" }}>
+          <div style={{ marginBottom: "10px" }} className={styles.radioOptions}>
             <label>Opciones (separadas por coma):</label>
             <input
               type="text"
@@ -161,14 +161,14 @@ export function FormCreator({ actividadId, styles, initialFields = [] }) {
             <div className={styles.inputContainer}>
               {field.type === "radio" ? (
                 field.options.map((option, optIndex) => (
-                  <div key={optIndex}>
+                  <div key={optIndex} className={styles.radioOptions}>
+                    <p>{option}</p>
                     <input
                       type="radio"
                       name={field.name}
                       value={option}
                       defaultChecked={option === field.defaultValue}
                     />
-                    {option}
                   </div>
                 ))
               ) : (
@@ -193,7 +193,7 @@ export function FormCreator({ actividadId, styles, initialFields = [] }) {
   );
 }
 
-export function FormGetter({ actividadId, styles }) {
+export function FormGetter({ actividadId }) {
     const [formFields, setFormFields] = useState([]);
     const [formData, setFormData] = useState({});
     const router = useRouter();
@@ -244,7 +244,8 @@ export function FormGetter({ actividadId, styles }) {
                     <div className={styles.inputContainer}>
                         {field.type === "radio" ? (
                             field.options.map((option, optIndex) => (
-                                <div key={optIndex}>
+                                <div key={optIndex} className={styles.radioOptions}>
+                                    {option}
                                     <input
                                         type="radio"
                                         name={field.name}
@@ -252,7 +253,6 @@ export function FormGetter({ actividadId, styles }) {
                                         defaultChecked={option === field.defaultValue}
                                         onChange={(e) => handleInputChange(index, e.target.value)}
                                     />
-                                    {option}
                                 </div>
                             ))
                         ) : (

@@ -279,7 +279,7 @@
     display: flex;
     padding: 20px;
     padding-top: 0;
-    height: 60;
+    height: 60px;
     box-sizing: border-box;
 }
 
@@ -287,7 +287,7 @@
     height: 100%;
     background-color: white;
     border-radius: 5px;
-    padding: 5px;
+    padding: 8px;
     border: 1px solid rgb(214, 214, 214);
 
     transition: .2s;
@@ -311,6 +311,15 @@
     width: 70px;
 }
 
+.link{
+    padding: 8px !important; 
+}
+
+.link:hover{
+    background-color: rgb(236, 236, 236);
+    cursor: pointer
+}
+
 .buttonSection button img{
     height: 100%;
 }
@@ -318,7 +327,51 @@
 .rightButtonContainer{
     display: flex;
     margin-left: auto;
-    gap: 20px;
+    gap: 10px;
+}
+
+.stats{
+    margin: 20px;
+    width: calc(100% - 40px);
+    border: 1px solid #ffbeac;
+    outline: 1px solid #ffbeac;
+    color: white;
+    background-image: linear-gradient(to right bottom, #ffac95, #ff3700);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.stats h2{
+    margin: 0;
+    width: 50%;
+    text-align: center;
+}
+
+.stats span{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    width: 50%;
+}
+
+.radioOptions{
+    display: flex;
+    align-items: center;
+}
+
+.radioOptions p{
+    min-width: 10%;
+    text-align: center;
+}
+
+.radioOptions input{
+    margin: 0;
+    width: auto;
+    margin-left: 20px;
+    text-align: left;
 }
 
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */

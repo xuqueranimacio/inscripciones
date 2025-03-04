@@ -3,6 +3,7 @@ import styles from "./admin.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { requestActividades } from "@/app/components/db";
+import { verificarSesion } from "../components/utils";
 
 export default function Page({ params }) {
 
@@ -11,6 +12,7 @@ export default function Page({ params }) {
     const [nombre, setNombre] = useState(null);
     const [misActividades, setMisActividades] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleActivityClick = (e) => {
         // Prevenir la acción por defecto (que puede ser la navegación de <a>)
@@ -32,77 +34,89 @@ export default function Page({ params }) {
     
     useEffect(() => {
 
-        let menu = document.getElementById("menu")
-        menu.addEventListener("click", () => {
-            let aside = document.getElementById("aside");
-            if(aside.style.display === "none") {
-                aside.style.display = "block";
-                aside.style.position = "absolute";
-                aside.style.left = "auto";
-                aside.style.right = "0";
-                aside.style.borderLeft = "1px solid rgb(214, 214, 214)";
-            } else {
-                aside.style.display = "none";
-                aside.style.position = "relative";
-                aside.style.left = "0";
-                aside.style.right = "auto";
-                aside.style.borderLeft = "none";
-            }
-        });
+        if(verificarSesion()){
 
-        const user_id = localStorage.getItem("user_id");
-        const nombre = localStorage.getItem("nombre");
-    
-        // RECOGER ACTIVIDADES DEL USUARIO
-        requestActividades().then(response => {
-            if (response.success) {
-                setMisActividades(response.actividades);
-            } else {
-                console.error("Error al obtener actividades:", response.error);
-            }
-            setIsLoading(false); // Desactivar el indicador de carga
-        });
+            setIsLoggedIn(true);
+
+            console.log(localStorage)
+            console.log(verificarSesion())
+
+            let menu = document.getElementById("menu")
+            menu.addEventListener("click", () => {
+                let aside = document.getElementById("aside");
+                if(aside.style.display === "none") {
+                    aside.style.display = "block";
+                    aside.style.position = "absolute";
+                    aside.style.left = "auto";
+                    aside.style.right = "0";
+                    aside.style.borderLeft = "1px solid rgb(214, 214, 214)";
+                } else {
+                    aside.style.display = "none";
+                    aside.style.position = "relative";
+                    aside.style.left = "0";
+                    aside.style.right = "auto";
+                    aside.style.borderLeft = "none";
+                }
+            });
+        
+            // RECOGER ACTIVIDADES DEL USUARIO
+            requestActividades().then(response => {
+                if (response.success) {
+                    setMisActividades(response.actividades);
+                } else {
+                    console.error("Error al obtener actividades:", response.error);
+                }
+                setIsLoading(false); // Desactivar el indicador de carga
+            });
+        }else{
+            router.push("/login");
+        }
+
+        
     }, []);
     
 
     return (
-
-        <main className={styles.main}>
-            <aside className={styles.aside} id="aside">
-                <a className={styles.asideBox}>Inicio</a>
-                <a className={styles.asideBox}>Estadísticas</a>
-                <a className={styles.asideBox} onClick={handleCrearActividad}>Crear Actividad</a>
-            </aside>
+        isLoggedIn ? (
+            <main className={styles.main}>
+                <aside className={styles.aside} id="aside">
+                    <a className={styles.asideBox}>Inicio</a>
+                    <a className={styles.asideBox}>Estadísticas</a>
+                    <a className={styles.asideBox} onClick={handleCrearActividad}>Crear Actividad</a>
+                </aside>
     
-            <div className={styles.content}>
-                <h1>Panel de Administrador</h1>
-                <h2>Mis Actividades</h2>
-
-                {isLoading ? (
-                    ghostActividades() // Renderiza los placeholders mientras carga
-                ) : (
-                    <div className={styles.actividades}>
-                        {misActividades && misActividades.length > 0 ? (
-                            misActividades.map((actividad, index) => (
-                                <div key={actividad.id || index} className={styles.actividad}>
-                                    <div className={styles.imageContainer}>
-                                        <img src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+                <div className={styles.content}>
+                    <h1>Panel de Administrador</h1>
+                    <h2>Mis Actividades</h2>
+    
+                    {isLoading ? (
+                        ghostActividades() // Renderiza los placeholders mientras carga
+                    ) : (
+                        <div className={styles.actividades}>
+                            {misActividades && misActividades.length > 0 ? (
+                                misActividades.map((actividad, index) => (
+                                    <div key={actividad.id || index} className={styles.actividad}>
+                                        <div className={styles.imageContainer}>
+                                            <img src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+                                        </div>
+                                        <a 
+                                            className={styles.info} 
+                                            onClick={handleActivityClick} 
+                                            data-id={actividad.id}>
+                                            <h3>{actividad.nombre}</h3>
+                                        </a>
                                     </div>
-                                    <a 
-                                        className={styles.info} 
-                                        onClick={handleActivityClick} 
-                                        data-id={actividad.id}>
-                                        <h3>{actividad.nombre}</h3>
-                                    </a>
-                                </div>
-                            ))
-                        ) : (
-                            <p>Inscribete en alguna actividad para verla aquí.</p>
-                        )}
-                    </div>
-                )}
-            </div>
-        </main>
+                                ))
+                            ) : (
+                                <p>Inscríbete en alguna actividad para verla aquí.</p>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </main>
+        ) : (
+            <main className={styles.main}></main>
+        )
     );
     
 }
