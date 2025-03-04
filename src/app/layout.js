@@ -31,10 +31,10 @@ export default function RootLayout({ children }) {
 
   const handleResize = () => {
     if(window.screen.width < 768) {
-        menu.style.display = "block";
+        // menu.style.display = "block";
         links.style.display = "none";
     } else {
-        menu.style.display = "none";
+        // menu.style.display = "none";
         links.style.display = "flex";
     }
   }
@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
       setIsLoggedIn(true);
     }
 
-    let menu = document.getElementById("menu")
+    // let menu = document.getElementById("menu")
     let links = document.getElementById("links");
     
     
