@@ -225,7 +225,7 @@ export function FormGetter({ actividadId, styles }) {
             return;
         }
 
-        const response = await subirInscripcionActividad(user_id, actividadId, JSON.stringify(formData));
+        const response = await subirInscripcionActividad( actividadId, JSON.stringify(formData));
         if (response.success) {
             alert("Formulario enviado con éxito.");
             router.push(`/actividad/${actividadId}`);

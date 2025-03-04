@@ -19,9 +19,11 @@ export default function Page() {
   const handleDownloadXlsx = () => {
     obtenerInscripcionesActividad(actividadID).then(
       (response) => {
-        if (response.success) {
+        if (response.success && response.inscripciones.length > 0) {
           let nombreArchivo = `${actividad.nombre} ${new Date().toISOString().split('T')[0]}`;
           jsonToXlsx(response.inscripciones, nombreArchivo);
+        }else{
+          alert("No se encontraron inscripciones para esta actividad.");
         }
       }
     )
@@ -36,6 +38,10 @@ export default function Page() {
         }
       });
     }
+  }
+
+  const handleGoBack = () => {
+    router.push("/administrador");
   }
 
   useEffect(() => {
@@ -55,6 +61,23 @@ export default function Page() {
 
   return (
     <main className={styles.main}>
+
+      <div className={styles.buttonSection}>
+        <button className={styles.backButton} onClick={handleGoBack}>
+          <img src="/back.png" alt="" />
+        </button>
+
+        <div className={styles.rightButtonContainer}>
+          <button onClick={handleBorrarActividad} className={styles.borrar}>
+            <img src="/trash.png" alt="" />
+          </button>
+          <button onClick={handleDownloadXlsx} className={styles.excel}>
+            <img src="/excel.png" alt="" />
+          </button>
+        </div>
+
+      </div>
+
       <div className={styles.container}>
         <div className={styles.img}>
           <img
@@ -77,16 +100,6 @@ export default function Page() {
       </div>
 
       <FormCreator actividadId={actividadID} styles={styles} initialFields={formFields} />
-
-      <div className={styles.excelContainer}>
-        <h2>Excel con Datos</h2>
-        <button onClick={handleDownloadXlsx} className={styles.excel}>Descargar Excel</button>
-      </div>
-
-      <div className={styles.excelContainer}>
-        <h2>Borrar Actividad</h2>
-        <button onClick={handleBorrarActividad} className={styles.borrar}>Borrar Actividad</button>
-      </div>
     </main>
   );
 }

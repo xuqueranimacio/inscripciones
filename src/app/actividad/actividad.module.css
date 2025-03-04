@@ -197,31 +197,128 @@
 }
 
 .excelContainer{
-    margin-left: 20px;
+    padding: 20px;
 }
 
 .excel{
+    position: relative;
     border-radius: 5px;
-    background-color: transparent;
-    border: 1px solid rgb(161, 161, 161);
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #43c37c;
+    color: white;
+    border: 1px solid #136d3b;
     cursor: pointer;
     padding: 10px;
+
+    transition: 0.2s;
+
 }
 
 .excel:hover{
-    background-color: rgb(214, 214, 214);
+    background-color: #1e7145;
+    border: 1px solid black;
 }
 
+.excel:hover::before{
+    filter: blur(20px);
+} 
+
+.excel::before{
+
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00ff73;
+    z-index: -1;
+    filter: blur(0);
+    transition: 0.2s;
+
+}
+
+
 .borrar{
-    margin-bottom: 20px;
+    position: relative;
     border-radius: 5px;
-    background-color: rgb(255, 58, 58);
-    border: 1px solid rgb(255, 0, 0);
-    color: white;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     padding: 10px;
+    width: 100%;
+}
+
+.borrar:hover{
+    background-color: red;
+    border-color: red !important;
+    outline: 1px solid red !important;
+}
+
+.borrar:hover::before{
+    filter: blur(10px);
+}
+
+.borrar::before{
+
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    z-index: -1;
+    filter: blur(0);
+    transition: 0.2s;
+
+}
+
+.buttonSection{
+    display: flex;
+    padding: 20px;
+    padding-top: 0;
+    height: 60;
+    box-sizing: border-box;
+}
+
+.buttonSection button{
+    height: 100%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(214, 214, 214);
+
+    transition: .2s;
+
+}
+
+.buttonSection button:hover{
+    border-color: black;
+}
+
+.buttonSection .backButton{
+    
+    cursor: pointer;
+    width: 60px;
+    transition: .2s;
+
+}
+
+.buttonSection .backButton:hover{
+    background-color: rgb(236, 236, 236);
+    width: 70px;
+}
+
+.buttonSection button img{
+    height: 100%;
+}
+
+.rightButtonContainer{
+    display: flex;
+    margin-left: auto;
+    gap: 20px;
 }
 
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */

@@ -148,15 +148,15 @@ export async function obtenerFormularioActividad(id) {
     }
 }
 
-export async function subirInscripcionActividad(user_id, actividad_id, formularioData){
+export async function subirInscripcionActividad(actividad_id, formularioData){
 
     const inscripcion_id = crypto.randomUUID();
 
     try {
         const result = await client.execute(`
-            INSERT INTO inscripciones (id, user_id, actividad_id, formulario)
-            VALUES (?, ?, ?, ?);
-        `, [inscripcion_id,user_id, actividad_id, formularioData]);
+            INSERT INTO inscripciones (id, actividad_id, formulario)
+            VALUES (?, ?, ?);
+        `, [inscripcion_id, actividad_id, formularioData]);
 
         return { success: true};
     } catch (error) {
