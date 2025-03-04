@@ -3,6 +3,7 @@ import { actualizarFormularioActividad, obtenerFormularioActividad, subirInscrip
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
 import styles from "../actividad/actividad.module.css";
+import Link from "next/link";
 
 export async function sesionUsuario(id, nombre){
     localStorage.setItem("user_id", id);
@@ -265,7 +266,9 @@ export function FormGetter({ actividadId }) {
                     </div>
                 </div>
             ))}
-            <button onClick={handleSubmit} style={{ marginTop: "20px" }}>
+            <p style={{ marginTop: "40px", fontSize: "0.8rem" }}><em>Al enviar el formulario, aceptas nuestra <Link href="/terms">Política de Privacidad</Link> y <Link href="/terms">Términos y Condiciones</Link>. Xúquer Animación no será responsable de los datos que envíes. 
+              Igualmente, el <b>uso de este formulario es plena y absolutamente interno. No se compartirá ningún dato con terceros</b>.</em></p>
+            <button onClick={handleSubmit} style={{ marginTop: "0px" }}>
                 Enviar Formulario
             </button>
         </section>

@@ -13,7 +13,7 @@ export default function Home() {
     // Check login status on component mount
     const userId = localStorage.getItem("user_id");
     if (userId) {
-      router.push(`/cliente/${userId}`);
+      router.push(`/administrador`);
     }
   }, [router]);
 

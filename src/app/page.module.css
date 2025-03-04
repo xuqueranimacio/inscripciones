@@ -346,15 +346,6 @@
     align-items: center;
   }
 
-  .howToSectionContent .howToText p{
-
-    padding: 20px;
-    box-sizing: border-box;
-    border: 1px solid rgb(214, 214, 214);
-    border-radius: 5px;
-
-  }
-
   .howToText b{
     color: #41c9b9;
   }
@@ -506,7 +497,7 @@
     background-color: #ff5f32;
     filter: blur(200px);
     z-index: -1;
-    animation: ghostAnimation 10s ease-in-out infinite;
+    opacity: 0;
   }
 
 
@@ -633,7 +624,13 @@
   }
   
   .howToSectionContent .howToText p{
+
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
     font-size: 1.3rem;
+
   }
 
   .howToSectionContent .howToActividad{
@@ -642,6 +639,10 @@
 
   .message{
     width: 50%;
+  }
+
+  .absoluteObject{
+    animation: ghostAnimation 10s ease-in-out infinite;
   }
 
 }
