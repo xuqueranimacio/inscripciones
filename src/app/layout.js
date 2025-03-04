@@ -71,11 +71,7 @@ export default function RootLayout({ children }) {
           <a onClick={handleLogoClick} className="logo">
             <img src="/logo.png" alt="Xuquer Animacio" />
           </a>
-
-          <nav id="menu">
-            <a><img src="/menu.png" /></a>
-          </nav>
-
+          
           <div className="navLinks" id="links">
             <Link href="/">
               Inicio

@@ -219,12 +219,6 @@ export function FormGetter({ actividadId }) {
     };
 
     const handleSubmit = async () => {
-      
-        const user_id = localStorage.getItem("user_id");
-        if (!user_id) {
-            alert("Por favor, inicia sesión para enviar el formulario.");
-            return;
-        }
 
         const response = await subirInscripcionActividad( actividadId, JSON.stringify(formData));
         if (response.success) {
