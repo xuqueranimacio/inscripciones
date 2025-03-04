@@ -8,6 +8,18 @@
   }
 }
 
+@keyframes clic {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
 /* MAIN CONTENIDO */
 
 /* SECCION HERO */
@@ -223,9 +235,8 @@
   }
 
   .content h1{
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-top: 0;
-      text-align: center;
   }
   
   .actividades{
@@ -286,6 +297,200 @@
 
   .heroSection .heroImage:hover img{
     filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.2));
+  }
+
+  .howToSection{
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .howToSectionContent{
+    margin-bottom: 20px;
+  }
+  
+  .howToSection h2{
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .howToActividad{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 10px;
+  }
+
+  .howToActividad2{
+    gap: 10px;
+  }
+
+  .howToActividad h3{
+    margin: 0;
+  }
+
+  .howToText{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .howToText b{
+    color: #f17e5d;
+  }
+
+  .howToText a{
+    color: #f17e5d;
+    font-weight: bolder;
+  }
+
+  .howToActividad .cursor{
+    position: absolute;
+    width: 30px;
+    bottom: -10px;
+    right: 30px;
+  }
+
+  .howToActividad .textImage{
+    position: absolute;
+    width: 30px;
+    bottom: 20px;
+    left: 30px;
+  }
+
+  .howToActividad .image{
+    width: 100%;
+    height: 80%;
+    background-color: rgb(182, 182, 182);
+    border-radius: 5px;
+
+    animation: ghostAnimation 2s ease-in-out infinite;
+
+  }
+
+  .howToActividad .info{
+    width: 100%;
+    height: 20%;
+    background-color: rgb(182, 182, 182);
+    border-radius: 5px;
+    animation: ghostAnimation 2s ease-in-out infinite;
+  }
+
+  .howToSectionContent p{
+    text-wrap: pretty;
+    font-size: 1rem;
+  }
+
+  .howToSectionContent .orderNumber{
+    font-weight: bold;
+    font-size: 4rem;
+  }
+
+  .message{
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: white;
+    gap: 15px;
+  }
+
+  .message:hover::after{
+    filter: blur(3px);
+  }
+
+  .message::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    left: -2px;
+    top: -2px;
+    z-index: -1;
+    border-radius: 5px;
+    background-image: linear-gradient(to top right, #ffd9cf , #ff5f32);
+    transition: .2s;
+  }
+
+  .messageImg{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(214, 214, 214);
+  }
+
+  .message .messageImg img{
+    width: 120%;
+    
+  }
+
+  .message .messageText{
+    width: 70%;
+  }
+
+  .message .notRead{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(0, 187, 0);
+    border-radius: 100%;
+  }
+
+  .message .notRead::before{
+    content: "1";
+    font-size: 0.5rem;
+    color: white;
+  }
+
+  .message .messageText h3{
+    margin: 0;
+  }
+
+  .message .messageText p{
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .howToSection{
+    position: relative;
+    overflow: hidden;
+  }
+
+  .howToSection .absoluteObject{
+    position: absolute;
+    opacity: 0.3;
+    width: 400px;
+    height: 400px;
+    border-radius: 100%;
+    bottom: -100px;
+    right: -100px;
+    background-color: #ff5f32;
+    filter: blur(200px);
+    z-index: -1;
   }
 
 
@@ -398,6 +603,29 @@
 
   .heroSection .heroImage:hover img{
     filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.2));
+  }
+
+  .howToSectionContent{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 40px;
+  }
+
+  .howToSectionContent .howToText{
+    width: 50%;
+  }
+  
+  .howToSectionContent .howToText p{
+    font-size: 1.3rem;
+  }
+
+  .howToSectionContent .howToActividad{
+    width: 50%;
+  }
+
+  .message{
+    width: 50%;
   }
 
 }

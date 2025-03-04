@@ -62,7 +62,7 @@ export default function Page({ params }) {
             </section>
     
             <div className={styles.content} id="inscripciones">
-                <h1>Inscripciones Abiertas:</h1>
+                <h1>Inscripciones Abiertas</h1>
                 <div className={styles.actividades}>
                     {todasActividades && todasActividades.length > 0 ? (
                         todasActividades.map((actividad, index) => (
@@ -85,7 +85,48 @@ export default function Page({ params }) {
             </div>
 
             <section className={styles.howToSection} id="funcionamiento">
-                <h2>¿Cómo Funciona?</h2>
+                <div className={styles.absoluteObject}></div>
+                <h2>¿Cómo funciona?</h2>
+                <div className={styles.howToSectionContent}>
+                    <div className={styles.howToText}>
+                        <span className={styles.orderNumber}>1. </span>
+                        <p>Haz clic sobre una de las <a href="#inscripciones">inscripciones disponibles</a> para ver más detalles sobre ella. Allí se encontrará el formulario de inscripción</p>
+                    </div>
+                    <div className={styles.howToActividad}>
+                        <div className={styles.image}></div>
+                        <div className={styles.info}></div>
+                        <img src="/cursor.png" className={styles.cursor}/>
+                    </div>
+                </div>
+                <div className={styles.howToSectionContent}>
+                    <div className={styles.howToText}>
+                        <span className={styles.orderNumber}>2. </span>
+                        <p>Rellena correctamente los campos requeridos del formulario de inscripción.<b> ¡Solo toca esperar un poquito! </b></p>
+                    </div>
+                    <div className={`${styles.howToActividad} ${styles.howToActividad2}`}>
+                        <h3>Nombre</h3>
+                        <div className={styles.info}></div>
+                        <h3>Apellidos</h3>
+                        <div className={styles.info}></div>
+                        <img src="/text.png" className={styles.textImage}/>
+                    </div>
+                </div>
+                <div className={styles.howToSectionContent}>
+                    <div className={styles.howToText}>
+                        <span className={styles.orderNumber}>3. </span>
+                        <p><b>¡Ya está! </b>Nos pondremos en contacto contigo y nos pondremos a preparar tu inscripción para que disfrutes de nuestras actividades lo antes posible.</p>
+                    </div>
+                    <div className={`${styles.message}`}>
+                        <div className={styles.messageImg}>
+                            <img src="/logo.png" alt="" />
+                        </div>
+                        <div className={styles.messageText}>
+                            <h3>Xúquer Animació</h3>
+                            <p>Muchas gracias por tu interés Rocío! Para confirmar la inscripción...</p>
+                        </div>
+                        <div className={styles.notRead}></div>
+                    </div>
+                </div>
             </section>
 
         </main>
