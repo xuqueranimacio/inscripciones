@@ -25,6 +25,8 @@
 
 body{
   margin: 0;
+  width: 100dvw;
+  overflow-x: hidden;
   box-sizing: border-box;
   font-family: var(--font-geist-sans), sans-serif;
 }
