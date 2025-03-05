@@ -247,6 +247,7 @@
     font-weight: bold;
     cursor: pointer;
     padding: 10px;
+    margin-left: auto;
 }
 
 .borrar:hover{
