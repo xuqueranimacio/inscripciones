@@ -247,7 +247,6 @@
     font-weight: bold;
     cursor: pointer;
     padding: 10px;
-    margin-left: auto;
 }
 
 .borrar:hover{
@@ -281,6 +280,8 @@
     padding: 20px;
     width: 100%;
     padding-top: 0;
+    justify-content: space-between; /* Distribuye mejor los elementos */
+    flex-wrap: wrap; /* Permite que los elementos se acomoden en móviles */
     height: 60px;
     box-sizing: border-box;
 }
