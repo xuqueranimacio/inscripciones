@@ -242,6 +242,7 @@
 
 .borrar{
     position: relative;
+    width: ;
     border-radius: 5px;
     font-size: 1rem;
     font-weight: bold;
@@ -276,18 +277,19 @@
 }
 
 .buttonSection{
+    position: relative;
     display: flex;
     padding: 20px;
     width: 100%;
     padding-top: 0;
-    justify-content: space-between; /* Distribuye mejor los elementos */
-    flex-wrap: wrap; /* Permite que los elementos se acomoden en móviles */
     height: 60px;
     box-sizing: border-box;
 }
 
 .buttonSection button{
+    position: relative;
     height: 100%;
+    min-width: 30px;
     background-color: white;
     border-radius: 5px;
     padding: 8px;
