@@ -41,7 +41,7 @@ export default function Page({ params }) {
             console.log(localStorage)
             console.log(verificarSesion())
 
-            let menu = document.getElementById("menu")
+            /* let menu = document.getElementById("menu")
             menu.addEventListener("click", () => {
                 let aside = document.getElementById("aside");
                 if(aside.style.display === "none") {
@@ -57,7 +57,7 @@ export default function Page({ params }) {
                     aside.style.right = "auto";
                     aside.style.borderLeft = "none";
                 }
-            });
+            }); */
         
             // RECOGER ACTIVIDADES DEL USUARIO
             requestActividades().then(response => {

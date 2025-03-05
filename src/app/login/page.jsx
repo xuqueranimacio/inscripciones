@@ -71,7 +71,7 @@ export default function Home() {
         const response = await loginCliente(mail, password);
         if (response.success) {
           sesionUsuario(response.user_id, response.nombre);
-          router.push(`/cliente/${response.user_id}`);
+          router.push(`/administrador`);
         } else {
           // Handle login failure (optional)
           setErrors(prevErrors => ({
@@ -112,7 +112,6 @@ export default function Home() {
           <button onClick={handleSubmit} className={styles.postButton}>Acceder</button>
           
         </div>
-        <p>O registrate <a onClick={handleRegisterClick} className={styles.registro}><b>aquí</b></a></p>
       </div>
     </main>
   );
