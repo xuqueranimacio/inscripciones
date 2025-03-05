@@ -12,29 +12,20 @@ export default function Page({ params }) {
     const [isLoading, setIsLoading] = useState(true);1
 
     useEffect(() => {
-
-        // RECOGER TODAS LAS ACTIVIDADES
+        setIsLoading(true);
         requestActividades().then(response => {
             if (response.success) {
                 setTodasActividades(response.actividades);
             } else {
                 console.error("Error al obtener actividades:", response.error);
             }
+            setIsLoading(false);
         });
-
-    }, [router]); // Asegúrate de pasar `router` como dependencia
+    }, []);
 
     const handleActivityClick = (e) => {
-        // Prevenir la acción por defecto (que puede ser la navegación de <a>)
         e.preventDefault();
-        
-        // Obtener el id desde el data-id del currentTarget (el <a> que disparó el evento)
         const id = e.currentTarget.getAttribute("data-id");
-
-        // Log para depuración
-        console.log("ID:", id);
-
-        // Navegar a la página de la actividad usando el router
         window.open(`/actividad/${id}`);
     };
     

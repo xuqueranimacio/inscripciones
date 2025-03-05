@@ -67,6 +67,7 @@ header nav{
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 
   padding-right: 10px;
 
@@ -94,7 +95,8 @@ header nav a:hover{
 }
 
 .navLinks{
-  margin-right: 10px;
+  margin-right: 20px;
+  box-sizing: border-box;
   margin-left: auto;
   display: flex;
   gap: 20px;
@@ -118,5 +120,5 @@ header nav a:hover{
 }
 
 #menu{
-  display: none;
+  align-items: center;
 }

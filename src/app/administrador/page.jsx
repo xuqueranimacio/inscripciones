@@ -9,56 +9,63 @@ export default function Page({ params }) {
 
     const router = useRouter();
 
-    const [nombre, setNombre] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
     const [misActividades, setMisActividades] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+    const handleMenuClick = () => {
+        
+        let miAside = document.getElementById("asideDiv");
+    
+        setIsOpen(prevState => {
+            const newState = !prevState;
+            if (newState) {
+                miAside.style.transform = "translateX(0)"
+                miAside.style.opacity = "1";
+                miAside.style.pointerEvents = "all";
+            } else {
+                miAside.style.transform = "translateX(100%)"
+                miAside.style.opacity = "0";
+                miAside.style.pointerEvents = "none";
+            }
+            
+            return newState;
+        });
+    };
 
     const handleActivityClick = (e) => {
-        // Prevenir la acción por defecto (que puede ser la navegación de <a>)
         e.preventDefault();
-        
-        // Obtener el id desde el data-id del currentTarget (el <a> que disparó el evento)
         const id = e.currentTarget.getAttribute("data-id");
-
-        // Log para depuración
         console.log("ID:", id);
-
-        // Navegar a la página de la actividad usando el router
         router.push(`/administrador/actividad/${id}`);
     };
 
     const handleCrearActividad = () => {
         router.push("/administrador/crear-actividad");
     };
-    
+
     useEffect(() => {
 
-        if(verificarSesion()){
-
-            setIsLoggedIn(true);
-
-            console.log(localStorage)
-            console.log(verificarSesion())
-
-            /* let menu = document.getElementById("menu")
-            menu.addEventListener("click", () => {
-                let aside = document.getElementById("aside");
-                if(aside.style.display === "none") {
-                    aside.style.display = "block";
-                    aside.style.position = "absolute";
-                    aside.style.left = "auto";
-                    aside.style.right = "0";
-                    aside.style.borderLeft = "1px solid rgb(214, 214, 214)";
-                } else {
-                    aside.style.display = "none";
-                    aside.style.position = "relative";
-                    aside.style.left = "0";
-                    aside.style.right = "auto";
-                    aside.style.borderLeft = "none";
+        window.addEventListener("resize", () => {
+            let miAside = document.getElementById("asideDiv");
+            
+            if(window.innerWidth > 768){
+                setIsOpen(false)
+                miAside.style.transform = "translateX(100%)"
+                miAside.style.opacity = "0";
+                miAside.style.pointerEvents = "none";
+            }else{
+                let menu = document.getElementById("menu");
+                if(menu){
+                    menu.addEventListener("click", handleMenuClick)
                 }
-            }); */
-        
+            }
+        })
+
+        if (verificarSesion()) {
+            
+            setIsLoggedIn(true);
             // RECOGER ACTIVIDADES DEL USUARIO
             requestActividades().then(response => {
                 if (response.success) {
@@ -66,65 +73,74 @@ export default function Page({ params }) {
                 } else {
                     console.error("Error al obtener actividades:", response.error);
                 }
-                setIsLoading(false); // Desactivar el indicador de carga
+                setIsLoading(false);
             });
-        }else{
+        } else {
             router.push("/login");
         }
 
-        
     }, []);
+
+    useEffect(() => {
+        let menu = document.getElementById("menu");
+        if(menu){
+            menu.addEventListener("click", handleMenuClick)
+        }
+    }, [misActividades])
+
     
 
     return (
         isLoggedIn ? (
-            <main className={styles.main}>
-                <aside className={styles.aside} id="aside">
-                    <a className={styles.asideBox}>Inicio</a>
-                    <a className={styles.asideBox}>Estadísticas</a>
-                    <a className={styles.asideBox} onClick={handleCrearActividad}>Crear Actividad</a>
-                </aside>
-    
-                <div className={styles.content}>
-                    <h1>Panel de Administrador</h1>
-                    <h2>Mis Actividades</h2>
-    
-                    {isLoading ? (
-                        ghostActividades() // Renderiza los placeholders mientras carga
-                    ) : (
-                        <div className={styles.actividades}>
-                            {misActividades && misActividades.length > 0 ? (
-                                misActividades.map((actividad, index) => (
-                                    <div key={actividad.id || index} className={styles.actividad}>
-                                        <div className={styles.imageContainer}>
-                                            <img src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+            <>
+                <main className={styles.main}>
+
+                    <aside className={styles.aside} id="asideDiv">
+                        <a className={styles.asideBox}>Inicio</a>
+                        <a className={styles.asideBox}>Estadísticas</a>
+                        <a className={styles.asideBox} onClick={handleCrearActividad}>Crear Actividad</a>
+                    </aside>
+
+                    <div className={styles.content}>
+                        <h1>Panel de Administrador</h1>
+                        <h2>Mis Actividades</h2>
+
+                        {isLoading ? (
+                            ghostActividades()
+                        ) : (
+                            <div className={styles.actividades}>
+                                {misActividades && misActividades.length > 0 ? (
+                                    misActividades.map((actividad, index) => (
+                                        <div key={actividad.id || index} className={styles.actividad}>
+                                            <div className={styles.imageContainer}>
+                                                <img src={`data:${actividad.tipo_imagen};base64,${actividad.imagen}`} alt={actividad.nombre} />
+                                            </div>
+                                            <a
+                                                className={styles.info}
+                                                onClick={handleActivityClick}
+                                                data-id={actividad.id}
+                                            >
+                                                <h3>{actividad.nombre}</h3>
+                                            </a>
                                         </div>
-                                        <a 
-                                            className={styles.info} 
-                                            onClick={handleActivityClick} 
-                                            data-id={actividad.id}>
-                                            <h3>{actividad.nombre}</h3>
-                                        </a>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>Inscríbete en alguna actividad para verla aquí.</p>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </main>
+                                    ))
+                                ) : (
+                                    <p>Inscríbete en alguna actividad para verla aquí.</p>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </main>
+            </>
         ) : (
             <main className={styles.main}></main>
         )
     );
-    
 }
 
-function ghostActividades(){
+function ghostActividades() {
     return (
         <div className={styles.actividades}>
-        
             <div className={styles.actividad}>
                 <div className={styles.ghostImagen}></div>
                 <div className={styles.info}>
@@ -156,8 +172,6 @@ function ghostActividades(){
                     <div className={styles.ghostText}></div>
                 </div>
             </div>
-        
         </div>
-
-    )
+    );
 }

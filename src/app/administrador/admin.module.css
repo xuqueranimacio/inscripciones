@@ -170,8 +170,13 @@
 @media (min-width:320px)  { 
 
     .aside{
-        display: none;
+        position: absolute;
+        transform: translateX(100%);
+        right: 0;
+        opacity: 1;
         background-color: white;
+        border-left: 1px solid rgb(196, 196, 196);
+        transition: 0.2s;
     }
 
     .content{

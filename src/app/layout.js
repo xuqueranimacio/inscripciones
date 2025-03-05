@@ -2,7 +2,7 @@
 import { Geist, Geist_Mono, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { FooterComponent } from "./components/FooterComponent";
 import { verificarSesion } from "./components/utils";
@@ -24,40 +24,44 @@ const dmSerif = DM_Serif_Display({
 });
 
 export default function RootLayout({ children }) {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAsideOpen, setIsAsideOpen] = useState(false);
+  const [isMobileView, setMobileView] = useState(false);
   
   const router = useRouter();
 
-  const handleResize = () => {
-    if(window.screen.width < 768) {
-        // menu.style.display = "block";
-        links.style.display = "none";
-    } else {
-        // menu.style.display = "none";
-        links.style.display = "flex";
+  const handleResize = useCallback(() => {
+    const mobileWidth = 768;
+    const currentWidth = window.innerWidth;
+    setMobileView(currentWidth < mobileWidth);
+    if(isMobileView){
+      let menu = document.getElementById("menu");
+      if(menu){
+        menu.style.display = "flex";
+      }
+    }else{
+      let menu = document.getElementById("menu")
+      if(menu){
+        menu.style.display = "hidden";
+      }
     }
-  }
+  }, []);
   
   const handleLogoClick = () => {
     router.push("/");
   };
 
-  // Re-renderizar cuando localStorage cambie
   useEffect(() => {
-
-    if(verificarSesion()){
+    // Check login status
+    if (verificarSesion()) {
       setIsLoggedIn(true);
     }
-
-    // let menu = document.getElementById("menu")
-    let links = document.getElementById("links");
-    
-    
     handleResize();
     window.addEventListener("resize", handleResize);
-
-  }, []);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [handleResize]);
 
   return (
     <html lang="es">
@@ -71,29 +75,36 @@ export default function RootLayout({ children }) {
           <a onClick={handleLogoClick} className="logo">
             <img src="/logo.png" alt="Xuquer Animacio" />
           </a>
-          
-          <div className="navLinks" id="links">
-            <Link href="/">
-              Inicio
-            </Link>
-            <Link href="/#inscripciones">
-              Inscripciones
-            </Link>
-            <Link href="/#funcionamiento">
-              ¿Cómo funciona?
-            </Link>
-            <Link href="/terms">
-              Términos y Condiciones
-            </Link>
-            {isLoggedIn ? (
-              <Link href="/administrador">
-                Panel de Administrador
-              </Link>
-            ) : (
-              null
-            )}
-          </div>
 
+          {isMobileView ? (
+            <nav 
+              id="menu" 
+            >
+              <img src="/menu.png" alt="Menu" />
+            </nav>
+          ) : (
+            <div className="navLinks" id="links">
+              <Link href="/">Inicio</Link>
+              <Link href="/#inscripciones">Inscripciones</Link>
+              <Link href="/#funcionamiento">¿Cómo funciona?</Link>
+              <Link href="/terms">Términos y Condiciones</Link>
+              {isLoggedIn && (
+                <Link href="/administrador">Panel de Administrador</Link>
+              )}
+            </div>
+          )}
+
+          {isMobileView && isAsideOpen && (
+            <div className="mobile-menu">
+              <Link href="/">Inicio</Link>
+              <Link href="/#inscripciones">Inscripciones</Link>
+              <Link href="/#funcionamiento">¿Cómo funciona?</Link>
+              <Link href="/terms">Términos y Condiciones</Link>
+              {isLoggedIn && (
+                <Link href="/administrador">Panel de Administrador</Link>
+              )}
+            </div>
+          )}
         </header>
 
         {children}
